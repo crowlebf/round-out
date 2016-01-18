@@ -1,0 +1,33 @@
+<ul class="title-area">
+  <li class="name">
+    <h1 class="logo"><%= link_to "Round Out", root_path %></h1>
+  </li>
+  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+</ul>
+
+<section class="top-bar-section">
+  <!-- Left Nav Section -->
+  <ul class="left">
+    <li class="divider"></li>
+    <li><a href="#">Events</a></li>
+    <li class="divider"></li>
+
+  </ul>
+  <!-- Right Nav Section -->
+  <ul class="right">
+    <li class="divider"></li>
+    <li><a href="#">My Events</a></li>
+    <li class="divider"></li>
+    <li class="has-dropdown">
+    <% if current_user %>
+      <%= link_to current_user.first_name,'#'%>
+      <ul class="dropdown">
+        <li><%= link_to 'Settings', edit_user_registration_path %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+      </ul>
+    </li>
+    <% else %>
+    <li><%= link_to "Sign In", new_user_session_path %></li>
+  <% end %>
+  </ul>
+</section>
