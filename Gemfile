@@ -18,9 +18,6 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
-gem 'twitter'
-gem 'omniauth-twitter'
-gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry-rails'

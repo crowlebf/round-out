@@ -1,9 +1,11 @@
 <div class="devise-shared-links">
   <%- if controller_name != 'sessions' %>
-    <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <label>Already a member?</label>
+    <%= link_to "Sign in", new_session_path(resource_name), class: "tiny button radius" %><br />
   <% end -%>
 
   <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+  <label>Not a member?</label>
     <%= link_to "Sign up", new_registration_path(resource_name), class: "tiny button radius" %><br />
   <% end -%>
 

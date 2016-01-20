@@ -1,0 +1,17 @@
+<h3>Event List</h3>
+
+<div class="event_list">
+  <div class="column small-centered small-12 medium-10 large-8">
+    <% @events.each do |event| %>
+    <h4>
+      <%= link_to event.title, event_path(event) %>
+    </h4>
+    <% end %>
+  </div>
+</div>
+
+<div class="column small-centered small-12 medium-10 large-8">
+  <% if current_user %>
+    <%= link_to "Add Event", new_event_path, class: "tiny button radius" %>
+  <% end %>
+</div>

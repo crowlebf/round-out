@@ -1,0 +1,37 @@
+<h3>Show Page<h3>
+<ul>
+  <p><%= @event.title %> - <%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></p>
+  <p><%= @event.starts_at %></p>
+</ul>
+
+<ul>
+  <h4>Members<h4>
+  <% @memberships.each do |membership| %>
+    <% if membership.approved == true %>
+      <p class="members"><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
+      <% if membership.event.user == current_user && current_user != membership.user%>
+        <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <h4>Interested</h4>
+  <% @memberships.each do |membership| %>
+    <% if membership.approved == false %>
+      <p class="prospective"><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
+      <% if membership.event.user == current_user %>
+      <%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius" %>
+        <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul>
+  <%= button_to "Join", event_memberships_path(@event), class: "tiny button radius" %>
+</ul>
+
+<ul>
+<% if @event.user == current_user %>
+  <%= link_to "Update Event", edit_event_path, class: "tiny button radius" %>
+<% end %>
+</ul>

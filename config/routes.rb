@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope :user do
-    root to: 'welcome#index'
+
+  root to: 'welcome#index'
+
+  resources :users, only: [:show, :edit, :update]
+
+  resources :events do
+    resources :memberships, only: [:create, :update]
   end
+
+  resources :memberships
 end
