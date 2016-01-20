@@ -64,7 +64,9 @@ feature "The event add page: ", %{
   scenario "unathenticated user tries to access new event path" do
     click_link 'Sign Out'
     visit new_event_path
-    expect(page).to have_content('You need to sign in or sign up before continuing')
+    expect(page).to have_content(
+    'You need to sign in or sign up before continuing'
+      )
     expect(page).to_not have_content('New Event Form')
   end
 

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   end
 
   private
+  
   def review_params
     params.require(:user).permit(:first_name, :last_name, :bio, :email)
   end

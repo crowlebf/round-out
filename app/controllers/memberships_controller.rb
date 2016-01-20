@@ -26,12 +26,12 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:id])
     @event = Event.find_by(id: @membership.event)
     if @event.user == current_user
-      unless @membership.user == current_user
-        @membership.destroy
-        flash[:notice] = "User removed from event."
+      if @membership.user != current_user
+        flash[:notice] = "You can't remove yourself from an event."
         redirect_to event_path(@event)
       else
-        flash[:notice] = "You can't remove yourself from an event."
+        @membership.destroy
+        flash[:notice] = "User removed from event."
         redirect_to event_path(@event)
       end
     else
@@ -43,6 +43,6 @@ class MembershipsController < ApplicationController
   private
 
   def membership_params
-  params.require(:membership).permit(:user, :event, :approved)
+    params.require(:membership).permit(:user, :event, :approved)
   end
 end

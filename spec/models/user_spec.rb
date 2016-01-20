@@ -9,7 +9,9 @@ RSpec.describe User, type: :model do
   it { should_not have_valid(:first_name).when('', nil) }
   it { should have_valid(:last_name).when('Williams') }
   it { should_not have_valid(:last_name).when('', nil) }
-  it { should have_valid(:email).when('timwilliams@example.com', 'person@example.com') }
+  it { should have_valid(:email).when(
+    'timwilliams@example.com', 'person@example.com'
+    ) }
   it { should_not have_valid(:email).when('', nil, 'test@', 'test', 'test.com') }
 
   it 'has matching password and password confirmation' do

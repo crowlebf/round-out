@@ -10,10 +10,8 @@ class User < ActiveRecord::Base
           :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
         )
-
-
-  def is_creator?(event)
-    binding.pry
+        
+  def creator?(event)
     event.user_id == id
   end
 end
