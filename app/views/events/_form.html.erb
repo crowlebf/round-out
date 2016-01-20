@@ -1,0 +1,24 @@
+<%= form_for @event do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, required: true %>
+  <%= f.label :description %>
+  <%= f.text_field :description, required: true %>
+  <%= f.label :date %>
+  <%= f.date_field :starts_at, required: true, id: "form_date" %>
+  <%= f.label :time %>
+  <%= f.time_field :starts_at, ignore_date: true, required: true, id: "form_time" %>
+  <%= f.label :address %>
+  <%= f.text_field :address, required: true %>
+  <%= f.label :address_secondary %>
+  <%= f.text_field :address_secondary %>
+  <%= f.label :city %>
+  <%= f.text_field :city, required: true %>
+  <%= f.label :state %>
+  <%= f.text_field :state, required: true %>
+
+  <% if @event.persisted? %>
+    <%= f.submit "Update Event", class: "button tiny radius" %>
+  <% else %>
+    <%= f.submit "Add Event", class: "button tiny radius" %>
+  <% end %>
+<% end %>

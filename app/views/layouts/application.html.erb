@@ -12,9 +12,11 @@
   </head>
 
   <body>
-    <nav class="top-bar" data-topbar role="navigation">
-      <%= render "layouts/header" %>
-    </nav>
+    <div class="sticky">
+      <nav class="top-bar" data-topbar role="navigation">
+        <%= render "layouts/header" %>
+      </nav>
+    </div>
     <%= render "layouts/flash" %>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
