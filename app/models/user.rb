@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
           :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
         )
-        
+
+  mount_uploader :avatar, AvatarUploader
+
   def creator?(event)
     event.user_id == id
   end

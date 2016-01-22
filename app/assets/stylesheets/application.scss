@@ -1,6 +1,20 @@
 @import "foundation_and_overrides";
 @import "topbar";
 @import "forms";
+@import "event_index";
+@import "event_show";
+@import "user_profile";
+@import "welcome";
+
+.alert-box  {
+  margin: 0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.alert-box.radius {
+  border-radius: 0;
+}
 
 
 // Small screens
@@ -20,21 +34,32 @@
 }
 
 @media only screen and (max-width: 40em) {
-
+  .bg_img {
+    height : -5vh;
+  }
+  .sidebar{
+    width: 0rem;
+  }
 }
 
 // Medium screens
 @media only screen and (min-width: 40.063em) {
-  // .top-bar-section ul li a {
-  //   font-size: 1rem;
-  // }
+  .bg_img {
+    height : -5vh;
+  }
+  .row {
+    margin-left: auto;
+  }
+  .sidebar{
+    width: 10rem;
+  }
 }
 
 // Large screens
 @media only screen and (min-width: 64.063em) {
-  // .top-bar-section ul li a {
-  //   font-size: 1.1rem;
-  // }
+  .sidebar{
+    width: 15rem;
+  }
 }
 
 // XLarge screens

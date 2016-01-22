@@ -12,10 +12,12 @@
   </head>
 
   <body>
-    <div class="sticky">
-      <nav class="top-bar" data-topbar role="navigation">
-        <%= render "layouts/header" %>
-      </nav>
+    <div class="welcome-wrapper">
+      <div class="sticky">
+        <nav class="top-bar" data-topbar role="navigation">
+          <%= render "layouts/header" %>
+        </nav>
+      </div>
     </div>
     <%= render "layouts/flash" %>
     <%= yield %>

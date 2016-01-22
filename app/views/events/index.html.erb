@@ -1,17 +1,34 @@
-<h3>Event List</h3>
-
-<div class="event_list">
-  <div class="column small-centered small-12 medium-10 large-8">
-    <% @events.each do |event| %>
-    <h4>
-      <%= link_to event.title, event_path(event) %>
-    </h4>
-    <% end %>
-  </div>
+<div class="row">
 </div>
+<div class="row">
+  <div class="small-2 columns show-for-medium-up">
+    <div class="sidebar">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
+  </div>
 
-<div class="column small-centered small-12 medium-10 large-8">
+
+
+  <% @events.each do |event| %>
+  <div class="small-6 columns small-centered">
+    <article class="event">
+        <div class="event-date">
+          <p class="event-month"><%= event.starts_at.strftime("%b") %></p>
+          <p class="event-day"><%= event.starts_at.strftime("%d") %></p>
+        </div>
+
+        <div class="event-desc">
+          <h4 class="event-desc-header"><%= event.title %></h4>
+          <p class="event-desc-detail"><span class="event-desc-time"></span><%= event.address %> - <%= event.city %></p>
+          <%= link_to "Details", event_path(event), class: "button radius rsvp" %>
+        </div>
+      </article>
+      <hr>
+  </div>
+  <% end %>
   <% if current_user %>
-    <%= link_to "Add Event", new_event_path, class: "tiny button radius" %>
+    <div class="add-event">
+      <p><%= link_to "Add Event", new_event_path, class: "tiny button radius" %></p>
+    </div>
   <% end %>
 </div>

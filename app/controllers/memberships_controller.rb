@@ -6,7 +6,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.new(user_id: current_user.id, event_id: @event.id, approved: false)
 
     if @membership.save
-      flash[:notice] = "Thank you for showing interest in #{@event.title}! You will be notified if you're asked to join this event."
+      flash.now[:notice] = "Thank you for showing interest in #{@event.title}! You will be notified if you're asked to join this event."
       redirect_to event_path(@event)
     else
       flash.now[:errors] = @membership.errors.full_messages.join(". ")
@@ -27,15 +27,15 @@ class MembershipsController < ApplicationController
     @event = Event.find_by(id: @membership.event)
     if @event.user == current_user
       if @membership.user != current_user
-        flash[:notice] = "You can't remove yourself from an event."
+        flash.now[:notice] = "You can't remove yourself from an event."
         redirect_to event_path(@event)
       else
         @membership.destroy
-        flash[:notice] = "User removed from event."
+        flash.now[:notice] = "User removed from event."
         redirect_to event_path(@event)
       end
     else
-      flash[:notice] = "You're not the creator of the event."
+      flash.now[:notice] = "You're not the creator of the event."
       redirect_to event_path(@event)
     end
   end
