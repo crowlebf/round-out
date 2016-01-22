@@ -1,25 +1,38 @@
 <h3>Show Page<h3>
-<ul>
+  <div class="row">
+    <div class="small-9 columns small-centered">
+      <article class="event">
   <p><%= @event.title %> - <%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></p>
-  <p><%= @event.starts_at %></p>
-</ul>
+</article>
+
+<hr>
 
 <ul>
   <h4>Members<h4>
   <% @memberships.each do |membership| %>
     <% if membership.approved == true %>
-      <p class="members"><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
+      <div class="members">
+        <p><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
+      </div>
+      <div class="avatar-event">
+        <%= image_tag membership.user.avatar %>
+      </div>
       <% if membership.event.user == current_user && current_user != membership.user%>
         <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
       <% end %>
     <% end %>
   <% end %>
+  <hr>
   <h4>Interested</h4>
   <% @memberships.each do |membership| %>
     <% if membership.approved == false %>
       <p class="prospective"><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
+      <div class="avatar-event">
+        <%= image_tag membership.user.avatar %>
+      </div>
+      <%# binding.pry %>
       <% if membership.event.user == current_user %>
-      <%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius" %>
+        <%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius" %>
         <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
       <% end %>
     <% end %>

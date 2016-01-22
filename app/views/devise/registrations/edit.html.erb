@@ -7,6 +7,16 @@
       <%= devise_error_messages! %>
 
       <div class="field">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, required: true, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, required: true, autofocus: true %>
+      </div>
+
+      <div class="field">
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true %>
       </div>
@@ -26,8 +36,8 @@
       </div>
 
       <div class="field">
-        <%= f.label :profile_pic, "Profile Picture" %>
-        <%= f.file_field :profile_pic %>
+        <%= f.label :avatar, "Profile Picture" %>
+        <%= f.file_field :avatar %>
       </div>
 
       <div class="field">

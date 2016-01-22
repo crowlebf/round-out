@@ -16,3 +16,9 @@
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+$(".first").click(function() {
+    $('html,body').animate({
+        scrollTop: $(".jump").offset().top},
+        'slow');
+});

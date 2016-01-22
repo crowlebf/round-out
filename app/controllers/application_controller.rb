@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def after_update_path_for(resource)
+    user_path(current_user)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) do |u|
       u.permit(
@@ -10,10 +14,11 @@ class ApplicationController < ActionController::Base
       )
     end
 
-    devise_parameter_sanitizer.for(:account_update) << [:email]
+    devise_parameter_sanitizer.for(:account_update) << [:first_name, :last_name, :email, :avatar]
 
     devise_parameter_sanitizer.for(:sign_in) do |u|
       u.permit(:email, :password, :remember_me)
     end
   end
+
 end
