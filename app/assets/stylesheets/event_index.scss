@@ -1,10 +1,18 @@
+.event-box {
+  margin-top: 1rem;
+  padding-bottom: auto;
+}
+.event-pic {
+  max-height: 125px;
+  max-width: 150px;
+  display: inline-block;
+  float: right;
+}
 .event {
-  padding: 1rem 1rem 1rem 0;
   display: table;
 }
-
 .event-date {
-  padding-top: 0.6rem;
+  padding-top: 0.1rem;
   width: 6rem;
   margin: 0 auto 1rem;
   display: table-cell;
@@ -22,12 +30,15 @@
 
   .event-day {
     margin: 0;
-    border: 1px solid #949494;
+    background: white;
+    border-left: 1px solid #949494;
+    border-bottom: 1px solid #949494;
+    border-right: 1px solid #949494;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
     padding: 0 2rem;
     text-align: center;
     font-size: 2rem;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
   }
 }
 
@@ -51,27 +62,28 @@
     font-weight: bold;
   }
 
-  .rsvp.button {
+  .button {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin: 5;
-    background: #3B88B7;
   }
 
+
 }
-.add-event p {
+.add-event {
   top: auto;
-  float: right;
+  float: left;
   position: relative;
 }
 
 .sidebar {
-  background: #51789c;
+  background: rgb(238, 238, 238);
   color: #ffffff;
-  left: 0;
+  box-shadow: -7px 2px 20px -5px rgba(42, 42, 42, 0.75);
+  right: 0;
   top: 2.8rem;
   bottom: 0;
-  padding: 10px;
+  padding: 15px;
   position: fixed;
-  width: 15rem;
+  width: 14rem;
 }

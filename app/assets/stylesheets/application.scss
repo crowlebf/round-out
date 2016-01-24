@@ -37,9 +37,6 @@
   .bg_img {
     height : -5vh;
   }
-  .sidebar{
-    width: 0rem;
-  }
 }
 
 // Medium screens
@@ -47,18 +44,12 @@
   .bg_img {
     height : -5vh;
   }
-  .row {
-    margin-left: auto;
-  }
-  .sidebar{
-    width: 10rem;
-  }
 }
 
 // Large screens
 @media only screen and (min-width: 64.063em) {
-  .sidebar{
-    width: 15rem;
+  .row {
+    margin-left: auto;
   }
 }
 

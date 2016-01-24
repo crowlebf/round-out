@@ -3,6 +3,7 @@
     <div class="small-9 columns small-centered">
       <article class="event">
   <p><%= @event.title %> - <%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></p>
+  <%= image_tag @event.picture %>
 </article>
 
 <hr>
