@@ -15,12 +15,19 @@
 .alert-box.radius {
   border-radius: 0;
 }
+.event-desc-header {
+  font-weight: bold;
+}
 
-
-// Small screens
-@media only screen {
+@media only screen and (max-width: 40em) {
   .field em {
     font-size: 0.9rem;
+  }
+
+  #map {
+    height: 15rem;
+    width: 15.6rem;
+    padding-top: 2rem;
   }
 
   .devise-shared-links label {
@@ -31,12 +38,21 @@
   .devise-shared-links h8 {
     font-size: 1rem;
   }
-}
 
-@media only screen and (max-width: 40em) {
   .bg_img {
     height : -5vh;
   }
+
+  .event-date {
+    padding-top: 1.3rem;
+  }
+
+  .add-event {
+    margin-top: 2rem;
+    margin-right: 7rem;
+    margin-bottom: 1rem;
+    float: right;
+   }
 }
 
 // Medium screens
@@ -44,6 +60,18 @@
   .bg_img {
     height : -5vh;
   }
+
+  #map {
+    height: 20rem;
+    width: 33.7rem;
+    padding-top: 2rem;
+  }
+  .add-event {
+    margin-top: 2rem;
+    margin-right: 6rem;
+    margin-bottom: 1rem;
+    float: right;
+   }
 }
 
 // Large screens
@@ -51,6 +79,12 @@
   .row {
     margin-left: auto;
   }
+  .add-event {
+    margin-top: 2rem;
+    margin-right: 16.5rem;
+    margin-bottom: 1rem;
+    float: right;
+   }
 }
 
 // XLarge screens
