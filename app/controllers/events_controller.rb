@@ -2,7 +2,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
+  #   if params[:id] == "nearby"
+  #   put in conditions for events within 25 miles of user
+  # else
     @events = Event.order(created_at: :desc)
+  # end
   end
 
   def show
@@ -28,9 +32,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
+      binding.pry
       @membership = Membership.create(user_id: current_user.id, event_id: @event.id, approved: true)
       @membership.save
-      flash.now[:notice] = "Event added!"
+      flash[:notice] = "Event added!"
       redirect_to event_path(@event)
     else
       flash.now[:errors] = @event.errors.full_messages.join(". ")
@@ -65,7 +70,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture)
+    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture, :longitude, :latitude, :full_address)
   end
 
   def membership_params
