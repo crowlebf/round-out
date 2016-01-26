@@ -2,11 +2,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-  #   if params[:id] == "nearby"
-  #   put in conditions for events within 25 miles of user
-  # else
-    @events = Event.order(created_at: :desc)
-  # end
+    if params[:id] == "nearby"
+      # put in conditions for events within 25 miles of user
+    else
+      @events = Event.order(created_at: :desc)
+    end
   end
 
   def show
@@ -32,7 +32,6 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      binding.pry
       @membership = Membership.create(user_id: current_user.id, event_id: @event.id, approved: true)
       @membership.save
       flash[:notice] = "Event added!"
@@ -60,9 +59,13 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    if event.user == current_user
+    @event = Event.find(params[:id])
+    if @event.user == current_user
       @event = Event.find(params[:id]).destroy
-      flash.now[:notice] = "Event deleted"
+      flash[:notice] = "Event deleted"
+      redirect_to events_path
+    else
+      flash[:error] = "You don't have permission to delete this event."
       redirect_to events_path
     end
   end

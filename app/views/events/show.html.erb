@@ -70,5 +70,12 @@
 <ul>
 <% if @event.user == current_user %>
   <%= link_to "Update Event", edit_event_path, class: "tiny button radius" %>
+	<%= button_to "Delete Event", event_path(@event), method: :delete, class: "tiny button radius" %>
 <% end %>
 </ul>
+
+<h2>Comments</h2>
+<%= render @event.comments %>
+
+<h2>Add a comment:</h2>
+<%= render "comments/comment_form" %>

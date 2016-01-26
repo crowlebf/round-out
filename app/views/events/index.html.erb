@@ -10,14 +10,14 @@
 
   <div class="row">
 
-  <div class="add-event">
-    <!-- <div id="showmenu">Click Here</div> -->
+  <!-- <div class="add-event">
+    <div id="showmenu">Click Here</div>
     <%= link_to image_tag("add.png"), new_event_path %>
-  </div>
+  </div> -->
 </div>
   <% @events.each do |event| %>
   <div class="row">
-  <div class="large-9 columns medium-11 columns small-10 columns text-left">
+  <div class="large-11 columns medium-11 columns small-10 columns text-left">
     <div class="event-box panel">
       <%= image_tag event.picture, class: "index-pic show-for-medium-up" %>
     <div class="event">
