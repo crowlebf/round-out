@@ -7,9 +7,6 @@
 </div>
 </div>
 
-
-
-
 <div class="row">
   <div class="small-9 medium-9 large-9 columns small-centered"><a class="show-pic">
 			<%= image_tag @event.picture %><a>
@@ -54,8 +51,8 @@
       <div class="avatar-event">
         <%= image_tag membership.user.avatar %>
       </div>
-      <%# binding.pry %>
       <% if membership.event.user == current_user %>
+			<hr>
         <%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius" %>
         <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
       <% end %>
@@ -63,12 +60,34 @@
   <% end %>
 </ul>
 
+
 <ul>
   <%= button_to "Join", event_memberships_path(@event), class: "tiny button radius" %>
 </ul>
 
-<ul>
+<% @memberships.each do |membership| %>
+<% if current_user.id == membership.user_id && membership.approved == true %>
+	<h2>Comments</h2>
+	<div id="all-comments">
+	<% @event.comments.each do |comment| %>
+		<p id="comment-name">
+		  <%= comment.user.first_name %>
+		</p>
+
+		<p id="comment-body">
+		  <%= comment.body %>
+		</p>
+	<% end %>
+	</div>
+
+	<h2>Add a comment:</h2>
+	<%= render "comments/comment_form" %>
+<% end %>
+<% end %>
+
+<p>
 <% if @event.user == current_user %>
   <%= link_to "Update Event", edit_event_path, class: "tiny button radius" %>
+	<%= button_to "Delete Event", event_path(@event), method: :delete, class: "tiny button radius" %>
 <% end %>
-</ul>
+</p>

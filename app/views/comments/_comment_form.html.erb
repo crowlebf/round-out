@@ -1,0 +1,9 @@
+<%= form_for([@event, @event.comments.build]) do |f| %>
+  <div class="comment-field">
+    <%= f.label :body %>
+    <%= f.text_area :body, id: "comment-booty" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add comment", class: "tiny button radius", id: "comment-submit", remote: true %>
+  </div>
+<% end %>

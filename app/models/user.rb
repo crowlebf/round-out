@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :joined_events, through: :memberships, class_name: "Event"
   has_many :events
+  has_many :comments
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true

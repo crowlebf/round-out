@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
 
   has_many :memberships
   has_many :users, through: :memberships
+  has_many :comments
   belongs_to :user
   validates :title, presence: true
   validates :description, presence: true

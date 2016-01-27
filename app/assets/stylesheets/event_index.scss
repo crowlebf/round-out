@@ -137,8 +137,6 @@
 .main-menu {
   background: #747474;
   border-right: 1px solid #e5e5e5;
-  border-top-left-radius: 13px;
-  border-bottom-left-radius: 13px;
   position: fixed;
   top: 2.8rem;
   bottom: 0;
@@ -168,7 +166,7 @@
   border-collapse: collapse;
   border-spacing: 0;
   color: #bfbfbf;
-   font-family: arial;
+  font-family: arial;
   font-size: 14px;
   text-decoration: none;
   -webkit-transform: translateZ(0) scale(1,1);
@@ -225,6 +223,4 @@ nav ul,nav li {
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
   color: #fff;
   background-color:#5fa2db;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
 }
