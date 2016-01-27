@@ -19,6 +19,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 gem 'dotenv-rails'
+gem 'gon'
 
 group :development, :test do
   gem 'pry-rails'

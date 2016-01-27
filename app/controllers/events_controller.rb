@@ -12,6 +12,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @memberships = Membership.where(event_id: @event.id)
+    gon.user = current_user.first_name
   end
 
   def new

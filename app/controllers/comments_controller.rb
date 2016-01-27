@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       redirect_to event_path(@event)
     else
       flash.now[:errors] = @comment.errors.full_messages.join(". ")
-      render event_path(@event)
+      redirect_to event_path(@event)
     end
   end
 

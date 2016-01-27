@@ -217,6 +217,11 @@ GEM
       sass (>= 3.3.0, < 3.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -303,6 +308,7 @@ GEM
       trollop
     rdoc (4.2.1)
       json (~> 1.4)
+    request_store (1.3.0)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
@@ -398,6 +404,7 @@ DEPENDENCIES
   fog
   foundation-icons-sass-rails
   foundation-rails
+  gon
   jbuilder (~> 2.0)
   jquery-rails
   kaminari

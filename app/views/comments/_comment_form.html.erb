@@ -1,5 +1,5 @@
 <%= form_for([@event, @event.comments.build]) do |f| %>
-  <div class="field">
+  <div class="comment-field">
     <%= f.label :body %>
     <%= f.text_area :body, id: "comment-booty" %>
   </div>
