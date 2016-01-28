@@ -2,15 +2,18 @@
   margin-top: 1rem;
   padding-bottom: auto;
 }
+
 .index-pic {
   max-height: 125px;
   max-width: 150px;
   display: inline-block;
   float: right;
 }
+
 .event {
   display: table;
 }
+
 .event-date {
   padding-top: 0.1rem;
   width: 6rem;
@@ -67,15 +70,7 @@
     padding-bottom: 0.5rem;
     margin: 5;
   }
-
-
 }
-
-// #add-event-sidebar {
-//   top: auto;
-//   float: left;
-//   position: relative;
-// }
 
 .add-event {
   margin-top: 2rem;
@@ -84,40 +79,10 @@
   float: right;
  }
 
-// .sidebar {
-//   background: rgb(238, 238, 238);
-//   color: #ffffff;
-//   box-shadow: -7px 2px 20px -5px rgba(42, 42, 42, 0.75);
-//   right: 0;
-//   top: 2.8rem;
-//   bottom: 0;
-//   padding: 15px;
-//   position: fixed;
-//   width: 14rem;
-//   z-index: 25;
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 .fa-2x {
   font-size: 2em;
 }
+
 .fa {
   position: relative;
   display: table-cell;
@@ -127,7 +92,6 @@
   vertical-align: middle;
   font-size: 20px;
 }
-
 
 .main-menu:hover,nav.main-menu.expanded {
   width: 250px;

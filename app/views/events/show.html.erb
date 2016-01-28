@@ -3,6 +3,9 @@
 <h3>Show Page<h3>
 	<article class="event">
 		<p><%= @event.title %> - <%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></p>
+		<p>
+			<%= @event.longitude %> - <%= @event.latitude %>
+		</p>
 	</article>
 </div>
 </div>
@@ -66,7 +69,7 @@
 </ul>
 
 <% @memberships.each do |membership| %>
-<% if current_user.id == membership.user_id && membership.approved == true %>
+<% if user_signed_in? && current_user.id == membership.user_id && membership.approved == true %>
 	<h2>Comments</h2>
 	<div id="all-comments">
 	<% @event.comments.each do |comment| %>
