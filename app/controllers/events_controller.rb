@@ -43,6 +43,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
+      binding.pry
       @membership = Membership.create(user_id: current_user.id, event_id: @event.id, approved: true)
       @membership.save
       flash[:notice] = "Event added!"
