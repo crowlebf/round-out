@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   def index
     if params[:query]
       @events = Event.text_seach(params[:query]).order(created_at: :desc)
-    elsif params[:id] == "nearby"
+    # elsif params[:id] == "nearby"
       # put in conditions for events within 25 miles of user
     elsif params[:id] == "today"
       @events = Event.where("starts_at <= ?",  DateTime.now.end_of_day).order(starts_at: :asc)

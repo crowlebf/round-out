@@ -1,7 +1,5 @@
 class Event < ActiveRecord::Base
   attr_accessor :start_date, :start_time
-  geocoded_by :full_address
-  after_validation :geocode, if: :address_changed?
 
 
   before_validation :set_start_date_time
@@ -20,10 +18,6 @@ class Event < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search, against: [:title, :description, :address, :city, :state], using: {tsearch: {dictionary: "english"}}, associated_against: {comments: :body}
-
-  def full_address
-    [address, city, state].compact.join(', ')
-  end
 
   def set_start_date_time
     self.starts_at = Time.zone.parse("#{start_date} #{start_time}")
