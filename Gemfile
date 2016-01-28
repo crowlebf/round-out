@@ -22,6 +22,7 @@ gem 'dotenv-rails'
 gem 'geocoder'
 gem 'gon'
 gem 'pg_search'
+gem 'wow-rails'
 
 group :development, :test do
   gem 'pry-rails'

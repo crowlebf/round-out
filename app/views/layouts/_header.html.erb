@@ -17,7 +17,7 @@
   <!-- Right Nav Section -->
   <ul class="right">
 
-  <li class="search">
+  <li class="search show-for-medium-up">
     <ul class="menu">
       <%= form_tag events_path, method: "get" do %>
       <li><%= text_field_tag :query, params[:query], placeholder: "Search..." %></li>
@@ -28,8 +28,7 @@
 
 
 
-    <li class="divider"></li>
-    <li><a href="#">My Events</a></li>
+
     <li class="divider"></li>
     <li class="has-dropdown">
     <% if current_user %>

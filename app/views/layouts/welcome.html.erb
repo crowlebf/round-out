@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "animate.css" %>
   </head>
 
   <body>
@@ -22,5 +23,10 @@
     <%= render "layouts/flash" %>
     <%= yield %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "welcome" %>
+    <%= javascript_include_tag "wow" %>
+    <script>
+      new WOW().init();
+    </script>
   </body>
 </html>
