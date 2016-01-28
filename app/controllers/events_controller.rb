@@ -2,8 +2,16 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    if params[:id] == "nearby"
+    if params[:query]
+      @events = Event.text_seach(params[:query]).order(created_at: :desc)
+    elsif params[:id] == "nearby"
       # put in conditions for events within 25 miles of user
+    elsif params[:id] == "today"
+      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_day).order(starts_at: :asc)
+    elsif params[:id] == "week"
+      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_week(start_day = :monday)).order(starts_at: :asc)
+    elsif params[:id] == "month"
+      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_month).order(starts_at: :asc)
     else
       @events = Event.order(created_at: :desc)
     end
@@ -12,7 +20,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @memberships = Membership.where(event_id: @event.id)
-    gon.user = current_user.first_name
+    if user_signed_in?
+      gon.user = current_user.first_name
+    end
   end
 
   def new
@@ -74,7 +84,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture, :longitude, :latitude, :full_address)
+    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture, :longitude, :latitude)
   end
 
   def membership_params

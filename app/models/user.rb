@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  geocoded_by :current_sign_in_ip
+  after_validation :geocode
+  include PgSearch
   has_many :memberships
   has_many :joined_events, through: :memberships, class_name: "Event"
   has_many :events

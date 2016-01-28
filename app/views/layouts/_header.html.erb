@@ -6,7 +6,7 @@
 </ul>
 
 <section class="top-bar-section">
-  
+
   <!-- Left Nav Section -->
   <ul class="left">
     <li class="divider"></li>
@@ -16,6 +16,18 @@
   </ul>
   <!-- Right Nav Section -->
   <ul class="right">
+
+  <li class="search">
+    <ul class="menu">
+      <%= form_tag events_path, method: "get" do %>
+      <li><%= text_field_tag :query, params[:query], placeholder: "Search..." %></li>
+      <li><button class="search-button" type="submit">go</button></li>
+      <% end %>
+    </ul>
+  </li>
+
+
+
     <li class="divider"></li>
     <li><a href="#">My Events</a></li>
     <li class="divider"></li>

@@ -12,14 +12,16 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'foundation-rails'
+gem 'foundation-rails', '~> 5.5.3.2'
 gem 'devise'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'fog'
 gem 'mini_magick'
 gem 'dotenv-rails'
+gem 'geocoder'
 gem 'gon'
+gem 'pg_search'
 
 group :development, :test do
   gem 'pry-rails'
