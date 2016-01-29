@@ -1,7 +1,11 @@
 body {
-  background-image: url(asset-path('tweed.png'));
+  background-image: url(asset-path('debut_dark.png'));
   background-repeat: repeat;
   z-index: -10;
+}
+
+.panel {
+  background-image: url(asset-path('debut_light.png'));
 }
 
 .event-box {
@@ -38,8 +42,8 @@ body {
   }
 
   .event-day {
+    background-image: url(asset-path('debut_light.png'));
     margin: 0;
-    background: white;
     border-left: 1px solid #949494;
     border-bottom: 1px solid #949494;
     border-right: 1px solid #949494;

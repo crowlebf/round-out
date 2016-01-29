@@ -3,17 +3,17 @@ class EventsController < ApplicationController
 
   def index
     if params[:query]
-      @events = Event.text_seach(params[:query]).order(created_at: :desc)
+      @events = Event.text_seach(params[:query]).upcoming.order(created_at: :desc)
     # elsif params[:id] == "nearby"
       # put in conditions for events within 25 miles of user
     elsif params[:id] == "today"
-      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_day).order(starts_at: :asc)
+      @events = Event.upcoming.where("starts_at <= ?",  DateTime.now.end_of_day).order(starts_at: :asc)
     elsif params[:id] == "week"
-      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_week(start_day = :monday)).order(starts_at: :asc)
+      @events = Event.upcoming.where("starts_at <= ?",  DateTime.now.end_of_week(start_day = :monday)).order(starts_at: :asc)
     elsif params[:id] == "month"
-      @events = Event.where("starts_at <= ?",  DateTime.now.end_of_month).order(starts_at: :asc)
+      @events = Event.upcoming.where("starts_at <= ?",  DateTime.now.end_of_month).order(starts_at: :asc)
     else
-      @events = Event.order(created_at: :desc)
+      @events = Event.upcoming.order(created_at: :desc)
     end
   end
 
@@ -42,14 +42,20 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    if @event.save
-      @membership = Membership.create(user_id: current_user.id, event_id: @event.id, approved: true)
-      @membership.save
-      flash[:notice] = "Event added!"
-      redirect_to event_path(@event)
-    else
-      flash.now[:errors] = @event.errors.full_messages.join(". ")
+    @event.set_start_date_time
+    if @event.starts_at <= Time.now
+      flash[:error] = "Event cannot occur in the past"
       render :new
+    else
+      if @event.save
+        @membership = Membership.create(user_id: current_user.id, event_id: @event.id, approved: true)
+        @membership.save
+        flash[:notice] = "Event added!"
+        redirect_to event_path(@event)
+      else
+        flash.now[:errors] = @event.errors.full_messages.join(". ")
+        render :new
+      end
     end
   end
 

@@ -10,13 +10,24 @@
 //   text-align: center;
 // }
 
+.transition {
+  background-image : url(asset-path('debut_light.png'));
+}
+
+.front-page-logo img {
+  border-radius: 50px;
+  width: 45rem;
+  height: auto;
+  radius: 100px;
+  transform: translate(48%, 35%);
+}
+
 .first {
-    height: 5rem;
-    width: 5rem;
+    height: 2.5rem;
+    width: 2.5rem;
     position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 57.5%;
+    left: 48.5%;
 }
 
 .second {

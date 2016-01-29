@@ -27,6 +27,6 @@ class Event < ActiveRecord::Base
     search(query)
   end
 
-  # scope :upcoming, -> { where("events.starts_at >= ?", Time.now) }
+  scope :upcoming, -> { where("events.starts_at >= ?", Time.now) }
 
 end
