@@ -18,16 +18,17 @@
   border-radius: 50px;
   width: 45rem;
   height: auto;
-  radius: 100px;
-  transform: translate(48%, 35%);
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 133px;
 }
 
 .first {
-    height: 2.5rem;
-    width: 2.5rem;
-    position: absolute;
-    top: 57.5%;
-    left: 48.5%;
+  width: 2.2rem;
+  height: auto;
+  position: absolute;
+  margin-top: 325px;
+  margin-left: 480px;
 }
 
 .second {
