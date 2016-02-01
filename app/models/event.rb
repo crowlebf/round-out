@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
   validates :address, presence: true
   validates :city, presence: true
   validates :state, presence: true
+  validates :needed, presence: true
+  validates :needed, numericality: { only_integer: true }
 
   mount_uploader :picture, EventUploader
 
@@ -25,6 +27,20 @@ class Event < ActiveRecord::Base
 
   def self.text_seach(query)
     search(query)
+  end
+
+  def number_left
+    approved_count = 0
+    self.memberships.each do |membership|
+      if membership.approved
+        approved_count += 1
+      end
+    end
+    self.needed.to_i - approved_count
+  end
+
+  def full?
+    self.number_left == 0
   end
 
   scope :upcoming, -> { where("events.starts_at >= ?", Time.now) }

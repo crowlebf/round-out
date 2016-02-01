@@ -1,95 +1,124 @@
 <div class="show">
 <div class="row full-width">
-	<div class="small-4 columns">
-	<h2><%= @event.title %><h2>
-		<article class="event">
-			<p> - <%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></p>
-		</article>
-	</div>
-</div>
-
-<div class="row">
-  <div class="small-9 medium-9 large-9 columns small-centered"><a class="show-pic">
-			<%= image_tag @event.picture %><a>
-	</div>
-</div>
-<div class="row">
-  <div class="small-9 medium-9 large-9 columns small-centered">	<iframe
-			id="map"
-		  frameborder="0" style="border:0"
-		  src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_KEY_SERVER"] %>
-		    &q=<%= @event.address %>,<%= @event.city %>+<%= @event.state %>" allowfullscreen>
-		</iframe>
-	</div>
-</div>
-
-
-
-
-  <div class="row">
-    <div class="small-9 columns small-centered">
-			<hr>
-<ul>
-  <h4>Members<h4>
-  <% @memberships.each do |membership| %>
-    <% if membership.approved == true %>
-      <div class="members">
-        <p><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
-      </div>
-      <div class="avatar-event">
-        <%= image_tag membership.user.avatar %>
-      </div>
-      <% if membership.event.user == current_user && current_user != membership.user%>
-        <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
-      <% end %>
-    <% end %>
-  <% end %>
-  <hr>
-  <h4>Interested</h4>
-  <% @memberships.each do |membership| %>
-    <% if membership.approved == false %>
-      <p class="prospective"><%= link_to "#{membership.user.first_name} " + "#{membership.user.last_name}", user_path(membership.user) %></p>
-      <div class="avatar-event">
-        <%= image_tag membership.user.avatar %>
-      </div>
-      <% if membership.event.user == current_user %>
-			<hr>
-        <%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius" %>
-        <%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius" %>
-      <% end %>
-    <% end %>
-  <% end %>
-</ul>
-
-
-<ul>
-  <%= button_to "Join", event_memberships_path(@event), class: "tiny button radius" %>
-</ul>
-
-<% @memberships.each do |membership| %>
-<% if user_signed_in? && current_user.id == membership.user_id && membership.approved == true %>
-	<h2>Comments</h2>
-	<div id="all-comments">
-	<% @event.comments.each do |comment| %>
-		<p id="comment-name">
-		  <%= comment.user.first_name %>
-		</p>
-
-		<p id="comment-body">
-		  <%= comment.body %>
-		</p>
+	<% if @event.number_left == 0 %>
+		<div class="row full-width">
+			<div class="small-12 medium-12 large-12 columns">
+				<h2 class="event-full">Event Full</h2>
+			</div>
+		</div>
 	<% end %>
+
+		<div class="row title-pic full-width">
+		<div class="small-12 medium-10 large-4 large-centered medium-centered columns">
+			<h1 class="title"><%= @event.title %></h1>
+			<h1 class="show-pic"><%= image_tag @event.picture %></h1>
+			<div class="row full-width">
+			<% if @event.user == current_user %>
+			<div class="small-6 columns">
+				<span><%= link_to "Update Event", edit_event_path, class: "small button radius update-event" %></span>
+			</div>
+			<div class="small-6 columns">
+				<span><%= button_to "Delete Event", event_path(@event), method: :delete, class: "small button radius delete-event" %></span>
+			<% end %>
+		</div>
 	</div>
+</div>
+</div>
 
-	<h2>Add a comment:</h2>
-	<%= render "comments/comment_form" %>
-<% end %>
-<% end %>
+		<div class="row full-width">
+			<div class="small-6 columns description">
+				<h2>Event Information</h2>
+				<hr>
+				<h4><%= @event.description %></h4>
+					<article class="event">
+						<h4>
+							<%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %>
+						</h4>
+					</article>
+				<iframe
+					id="map"
+				  frameborder="0" style="border:0"
+				  src="https://www.google.com/maps/embed/v1/place?key=<%= ENV["GOOGLE_MAPS_KEY_SERVER"] %>
+				    &q=<%= @event.address %>,<%= @event.city %>+<%= @event.state %>" allowfullscreen>
+				</iframe>
+				<% @memberships.each do |membership| %>
+				<% if user_signed_in? && current_user.id == membership.user_id && membership.approved == true %>
+				<hr>
+					<h2>Comments</h2>
+					<div class="panel comment-panel">
+						<div id="all-comments">
+						<% @event.comments.each do |comment| %>
+						<div class="panel">
+							<p id="comment">
+							  <%= image_tag comment.user.avatar %>  <%= comment.user.first_name %></p>
+								<hr>
+							  <p class="comment-body"><%= comment.body %></p>
+							</p>
+						</div>
+						<% end %>
+					</div>
+					<div class="add-comment-text">
 
-<p>
-<% if @event.user == current_user %>
-  <%= link_to "Update Event", edit_event_path, class: "tiny button radius" %>
-	<%= button_to "Delete Event", event_path(@event), method: :delete, class: "tiny button radius" %>
-<% end %>
-</p>
+					<h2 >Add a comment:</h2>
+					<%= render "comments/comment_form" %>
+				</div>
+			</div>
+			<% end %>
+		<% end %>
+			</div>
+	    <div class="small-3 columns membership">
+				<% unless @event.user == current_user %>
+					<% @memberships.each do |membership| %>
+						<% if user_signed_in? && current_user.id != membership.user_id %>
+							<% @interested = false %>
+						<% end %>
+					<% end %>
+					<% @memberships.each do |membership| %>
+						<% if user_signed_in? && current_user.id == membership.user_id %>
+							<% @interested = true %>
+						<% end %>
+					<% end %>
+				<% end %>
+
+				<% if @event.number_left > 0 %>
+					<% if @interested == false %>
+							<p><%= button_to "Join", event_memberships_path(@event), class: "tiny button radius not-joined" %></p>
+					<% else %>
+							<p><%= button_to "Joined", event_memberships_path(@event), class: "tiny button radius joined" %></p>
+					<% end %>
+				<% end %>
+				  <h2>Members</h2>
+					<hr>
+				  <% @memberships.each do |membership| %>
+				    <% if membership.approved == true %>
+						<div class="panel">
+				        <h5><%= "#{membership.user.first_name} " + "#{membership.user.last_name}" %></h5>
+				      <div class="avatar-event">
+				        <%= image_tag membership.user.avatar %>
+				      </div>
+							<% if membership.event.user == current_user && current_user != membership.user%>
+				        <p><%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius delete" %></p>
+				      <% end %>
+						</div>
+				    <% end %>
+				  <% end %>
+				  <h2>Interested</h2>
+					<hr>
+				  <% @memberships.each do |membership| %>
+				    <% if membership.approved == false %>
+						<div class="panel">
+				      <h5><%= "#{membership.user.first_name} " + "#{membership.user.last_name}" %></h5>
+				      <div class="avatar-event">
+				        <%= image_tag membership.user.avatar %>
+				      </div>
+				      <% if membership.event.user == current_user %>
+							<p><%= button_to "Accept member", membership_path(membership, event_id: @event.id), method: :patch, class: "tiny button radius accept" %></p>
+							<p><%= button_to "Delete member", membership_path(membership), method: :delete, class: "tiny button radius delete" %></p>
+				      <% end %>
+						</div>
+				    <% end %>
+				  <% end %>
+</div>
+</div>
+	</div>
 </div>

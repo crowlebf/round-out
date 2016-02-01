@@ -8,7 +8,7 @@ $(document).ready(function() {
     var splat = string.split(delimeter);
     var id = splat[4];
 
-    var body = document.getElementById("comment-booty").value;
+    var body = document.getElementById("comment-ajax").value;
     var user = gon.user;
     var request = $.ajax({
       type: "POST",
@@ -29,7 +29,7 @@ $(document).ready(function() {
         para.appendChild(paraText);
         divElement.appendChild(name);
         divElement.appendChild(para);
-        $("#comment-booty").val("");
+        $("#comment-ajax").val("");
       });
       request.fail(function(response) {
     });
