@@ -1,22 +1,94 @@
 .avatar-event {
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 50px;
+  padding-bottom: 2rem;
 }
 
-#map {
-  height: 30rem;
-  width: 50rem;
-  padding-top: 5rem;
+.below {
+  margin: 3px;
 }
 
-.event-pic-show {
-  float: left;
+.title-pic h1 {
+  color: $white;
 }
-
 .show {
-  background: #ffffff;
+  background-image : url(asset-path('debut_light.png'));
 }
 
-.show-pic {
-  align-items: center;
+.show .panel {
+  background: linear-gradient(rgba(0, 0, 0, 0.07), rgba(0, 0, 0, 0.07));
+  box-shadow: 8px 9px 13px -7px rgba(120,120,120,1);
+}
+
+.show .comment-panel {
+  background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0));
+  box-shadow: 0;
+}
+
+.title-pic {
+  background-image : url(asset-path('tweed.png'));
+  padding-bottom: 2rem;
+}
+
+.add-comment-text h2, label {
+  color: black;
+}
+
+#comment img {
+  height: 50px;
+  width: 50px;
+}
+
+.joined {
+  background: $success-color;
+  float: right;
+  margin-top: 8px;
+}
+.joined:hover {
+  background: #328551;
+  float: right;
+}
+
+.not-joined {
+  float: right;
+  margin-top: 8px;
+}
+
+.event-full {
+  background: #b04848;
+}
+
+.comment-body {
+  overflow: hidden;
+}
+
+.description {
+  margin: 20px;
+}
+
+.membership {
+  margin: 20px;
+  float: right;
+}
+
+.delete-event {
+  float:right;
+}
+
+.delete {
+  margin: 0;
+}
+
+.accept {
+  margin: 0;
+}
+
+.event-full {
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
 }

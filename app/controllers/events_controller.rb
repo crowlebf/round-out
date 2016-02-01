@@ -4,8 +4,6 @@ class EventsController < ApplicationController
   def index
     if params[:query]
       @events = Event.text_seach(params[:query]).upcoming.order(created_at: :desc)
-    # elsif params[:id] == "nearby"
-      # put in conditions for events within 25 miles of user
     elsif params[:id] == "today"
       @events = Event.upcoming.where("starts_at <= ?",  DateTime.now.end_of_day).order(starts_at: :asc)
     elsif params[:id] == "week"
@@ -63,14 +61,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.user == current_user
       if @event.update_attributes(event_params)
-        flash.now[:notice] = 'Event updated successfully.'
+        flash[:notice] = 'Event updated successfully.'
         redirect_to event_path(@event)
       else
         flash.now[:error] = @event.errors.full_messages.join(". ")
         render :edit
       end
     else
-      flash.now[:error] = "You don't have access to this form."
+      flash[:error] = "You don't have access to this form."
       redirect_to event_path(@event)
     end
   end
@@ -90,7 +88,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture, :longitude, :latitude)
+    params.require(:event).permit(:user_id, :title, :description, :starts_at, :start_date, :start_time, :address, :address_secondary, :city, :state, :picture, :longitude, :latitude, :needed)
   end
 
   def membership_params

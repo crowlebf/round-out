@@ -5,10 +5,6 @@ class UsersController < ApplicationController
     @users = User.text_search(params[:query])
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
   private
 
   def review_params

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :events do
-    resources :memberships, only: [:create, :update]
+    resources :memberships, only: [:create, :update, :destroy]
   end
 
   resources :events do

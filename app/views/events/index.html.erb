@@ -1,25 +1,13 @@
-  <!-- <div class="show-for-large-up">
-    <div class="sidebar">
-      <% if current_user %>
-        <div class="add-event">
-          <%= link_to "Add Event", new_event_path, class: "tiny button radius", id: "add-event-sidebar" %>
-        </div>
-      <% end %>
-    </div>
-  </div> -->
-
+<% @events.each do |event| %>
   <div class="row">
-
-  <!-- <div class="add-event">
-    <div id="showmenu">Click Here</div>
-    <%= link_to image_tag("add.png"), new_event_path %>
-  </div> -->
-</div>
-  <% @events.each do |event| %>
-  <div class="row">
-  <div class="large-11 columns medium-11 columns small-10 columns text-left">
+  <div class="large-11 medium-11 small-10 columns">
     <div class="event-box panel">
       <%= image_tag event.picture, class: "index-pic show-for-medium-up" %>
+      <% if event.number_left == 0 %>
+        <p class="number-needed-full">Number of people needed: Full</p>
+      <% else %>
+        <p class="number-needed">Number of people needed: <%= event.number_left %></p>
+      <% end %>
     <div class="event">
         <div class="event-date">
           <p class="event-month"><%= event.starts_at.strftime("%b") %></p>
@@ -29,19 +17,15 @@
         <div class="event-desc">
           <h4 class="event-desc-header"><%= event.title %></h4>
           <p class="event-desc-detail"><span class="event-desc-time"></span><%= event.address %> - <%= event.city %>, <%= event.state %></p>
-          <%= link_to "Details", event_path(event), class: "button radius" %>
+          <%= link_to "Details", event_path(event), class: "button radius details" %>
         </div>
       </div>
     </div>
 </div>
 </div>
   <% end %>
-
-  <html>
-  <head>
-
-  </head>
-  <body><div class="area"></div><nav class="main-menu">
+<div class="area"></div>
+<nav class="main-menu">
             <ul>
                 <li class="has-subnav">
                     <a href="/events/new" id="add-event-sidebar">
@@ -49,14 +33,6 @@
                             <span class="nav-text">
                               Add Event
                             </span>
-                    </a>
-                </li>
-                <li class="has-subnav" id="near-me-sidebar">
-                    <a href="/events?id=nearby">
-                        <i class="fa fa-location-arrow fa-2x"></i>
-                        <span class="nav-text">
-                            Near Me
-                        </span>
                     </a>
                 </li>
                 <li class="has-subnav"
@@ -88,5 +64,3 @@
                 </li>
             </ul>
         </nav>
-  </body>
-    </html>

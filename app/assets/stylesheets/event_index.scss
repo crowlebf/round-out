@@ -1,7 +1,13 @@
 body {
-  background-image: url(asset-path('debut_dark.png'));
+  background-image : url(asset-path('tweed.png'));
   background-repeat: repeat;
   z-index: -10;
+}
+
+.event-box .number-needed-full {
+  color: $white;
+  width: 225px;
+  background: #b04848;
 }
 
 .panel {
@@ -75,7 +81,7 @@ body {
     font-weight: bold;
   }
 
-  .button {
+  .details {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     margin: 5;

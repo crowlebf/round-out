@@ -31,6 +31,7 @@
   padding-bottom: 100px;
 }
 
+ // Small screens
 @media only screen and (max-width: 40em) {
 
   .card{
@@ -81,10 +82,11 @@
   }
 
   #map {
-    height: 20rem;
-    width: 33.7rem;
+    height: 13rem;
+    width: 20rem;
     padding-top: 2rem;
   }
+
   .add-event {
     margin-top: 2rem;
     margin-right: 6rem;
@@ -95,8 +97,11 @@
 
 // Large screens
 @media only screen and (min-width: 64.063em) {
-  .cards {
 
+  #map {
+    height: 20rem;
+    width: 33.7rem;
+    padding-top: 2rem;
   }
   .row {
     margin-left: auto;
@@ -107,8 +112,4 @@
     margin-bottom: 1rem;
     float: right;
    }
-}
-
-// XLarge screens
-@media only screen and (min-width: 90.063em) {
 }
