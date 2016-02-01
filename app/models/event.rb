@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
         approved_count += 1
       end
     end
-    self.needed.to_i - approved_count
+    self.needed.to_i + 1 - approved_count
   end
 
   def full?

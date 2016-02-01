@@ -29,12 +29,14 @@
 			<div class="small-6 columns description">
 				<h2>Event Information</h2>
 				<hr>
-				<h4><%= @event.description %></h4>
-					<article class="event">
-						<h4>
-							<%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %>
-						</h4>
-					</article>
+				<h3>Details</h3>
+				<h5><%= @event.description %></h5>
+				<article class="event">
+				<h3>When</h3>
+					<h5><%= @event.starts_at.strftime("%m/%d/%y") %> - <%= @event.starts_at.strftime("%l:%M%p") %></h5>
+				</article>
+				<h3>Where</h3>
+					<h5><%= @event.address %>, <%= @event.city %>, <%= @event.state %></h5>
 				<iframe
 					id="map"
 				  frameborder="0" style="border:0"
