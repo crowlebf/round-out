@@ -23,6 +23,7 @@ gem 'geocoder'
 gem 'gon'
 gem 'pg_search'
 gem 'wow-rails'
+gem "animate-rails"
 
 group :development, :test do
   gem 'pry-rails'

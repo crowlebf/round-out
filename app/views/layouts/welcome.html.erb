@@ -9,8 +9,8 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag    "animate.css" %>
-    <link href='https://fonts.googleapis.com/css?family=Grand+Hotel|Pacifico|Damion|Bubblegum+Sans|Acme|Sonsie+One|Chicle' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css" %>
+    <%= stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Pacifico' %>
   </head>
 
   <body>
@@ -25,7 +25,7 @@
     <%= yield %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "welcome" %>
-    <%= javascript_include_tag "wow" %>
+    <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js" %>
     <script>
       new WOW().init();
     </script>
